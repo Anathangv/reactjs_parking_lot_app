@@ -1,0 +1,30 @@
+.App {
+  margin: 0px;
+  padding: 0px;
+  background-color: chocolate;
+  margin: 0px 10px;
+}
+
+.top h1 {
+  background-color: darkgray;
+  padding: 10px;
+  font-weight: 800;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.display {
+  background-color: darkkhaki;
+  text-align: center;
+  padding: 5px;
+}
+
+.display span {
+  font-size: x-large;
+  margin-right: 5px;
+}
+
+.controls {
+  padding: 5px;
+  text-align: center;
+}
