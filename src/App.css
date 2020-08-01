@@ -26,5 +26,31 @@
 
 .controls {
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: brown;
+}
+
+.controls input {
   text-align: center;
+  width: 35px;
+  margin: 0px 5px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.buttonscontrol {
+  margin: 0px 30px;
+}
+
+.buttonscontrol button {
+  padding: 2px;
+  margin: 0px 5px;
+}
+
+.container {
+  background-color: khaki;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }

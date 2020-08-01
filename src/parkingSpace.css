@@ -1,0 +1,59 @@
+.containerSpace {
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  margin: 5px 5px;
+  padding: 5px 5px 5px 0px;
+}
+
+.occupied {
+  background-color: yellow;
+}
+
+.finalizing {
+  background-color: red;
+}
+
+.parkingPosition {
+  background-color: none;
+  display: inline-block;
+  padding: 3px;
+}
+
+.parkingPosition span {
+  position: relative;
+  top: 35%;
+  color: black;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  font-weight: 900;
+  font-size: larger;
+}
+
+.parkingSpace {
+  max-width: 200px;
+  min-width: 200px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+}
+
+.line {
+  margin: 0px;
+  background-color: gray;
+  display: flex;
+}
+
+.line label {
+  font-size: large;
+  min-width: 70px;
+  margin: 0px;
+}
+
+.line input {
+  min-width: 130px;
+  max-width: 130px;
+}
