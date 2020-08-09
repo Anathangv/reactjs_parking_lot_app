@@ -8,7 +8,13 @@ class App extends React.Component {
     parkingSpaceAvalilable: 0,
     parkingSpaceAccupied: 0,
 
-    parkingSpace: { entrance: "", exit: "", value: "", timeSpent: "" },
+    parkingSpace: {
+      plate: "",
+      entrance: "",
+      exit: "",
+      value: "",
+      timeSpent: "",
+    },
     parkingSpaceList: [],
 
     hourCost: 7,
@@ -16,6 +22,7 @@ class App extends React.Component {
     overtimeCost: 0.5,
   };
 
+  //create a new parking space
   createParkingSpace = () => {
     const newParkingSpace = { ...this.state.parkingSpace };
     const newParkingSpaceList = [
@@ -29,6 +36,7 @@ class App extends React.Component {
     this.updateCounters(1, 1, null);
   };
 
+  //delete all parking space on screen
   deleteAllParkingSpace = () => {
     this.setState({
       parkingSpaceList: [],
@@ -38,8 +46,10 @@ class App extends React.Component {
     });
   };
 
+  //start timing
   startTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
+
     if (!newParkingSpaceList[position].exit) {
       if (!newParkingSpaceList[position].entrance) {
         this.updateCounters(null, -1, 1);
@@ -51,6 +61,7 @@ class App extends React.Component {
     }
   };
 
+  //finish and calculate cost
   finishTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
 
@@ -74,13 +85,23 @@ class App extends React.Component {
     }
   };
 
+  //delete specific parking space
   deleteParkingSpace = (position) => {
+    //update counters according to parking space status
+    this.state.parkingSpaceList[position].exit
+      ? this.updateCounters(-1, 0, -1)
+      : this.state.parkingSpaceList[position].entrance
+      ? this.updateCounters(-1, 0, -1)
+      : this.updateCounters(-1, -1, 0);
+
     const newParkingSpaceList = this.state.parkingSpaceList.filter(
       (item, index) => index !== position
     );
+
     this.setState({ parkingSpaceList: newParkingSpaceList });
   };
 
+  //clean data of parking space
   resetTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
     if (newParkingSpaceList[position].entrance) {
@@ -94,6 +115,7 @@ class App extends React.Component {
     }
   };
 
+  //controls the counters based on the parking space status
   updateCounters = (total, available, occupied) => {
     if (total) {
       this.setState({

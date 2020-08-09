@@ -9,63 +9,73 @@ class ParkingSpace extends Component {
           className={
             this.props.parkingSpace.entrance
               ? this.props.parkingSpace.exit
-                ? "containerSpace finalizing"
-                : "containerSpace occupied"
-              : "containerSpace"
+                ? "parkingspace finalizing"
+                : "parkingspace occupied"
+              : "parkingspace"
           }
         >
-          <div className="parkingPosition">
-            <span>{this.props.id}</span>
+          <div className="topcontainer">
+            <div className="parkingPosition">
+              <span>{this.props.id + 1} </span>
+            </div>
+            <div className="inputbox">
+              <div className="line">
+                <label>
+                  <span>Placa</span>
+                  <input type="text" placeholder="AAAA-9999" />
+                </label>
+              </div>
+              <div className="line">
+                <label>
+                  <span>Entrada</span>
+                  <input
+                    className="inputreadonly"
+                    typt="text"
+                    readOnly
+                    defaultValue={this.props.parkingSpace.entrance.toLocaleString()}
+                  />
+                </label>
+              </div>
+              <div className="line">
+                <label>
+                  <span>Saída</span>
+                  <input
+                    className="inputreadonly"
+                    typt="text"
+                    readOnly
+                    defaultValue={this.props.parkingSpace.exit.toLocaleString()}
+                  />
+                </label>
+              </div>
+              <div className="line">
+                <label>
+                  <span>Valor</span>
+                  <input
+                    className="inputreadonly"
+                    typt="text"
+                    defaultValue={this.props.parkingSpace.value}
+                    readOnly
+                  />
+                </label>
+              </div>
+            </div>
           </div>
-          <div className={"parkingSpace"}>
-            <div className="line">
-              <label htmlFor="plate">Placa</label>
-              <input type="text" id="plate" placeholder="Placa" />
-            </div>
-            <div className="line">
-              <label htmlFor="entrance">Entrada</label>
-              <input
-                typt="text"
-                id="entrance"
-                placeholder="Entrada"
-                readOnly
-                defaultValue={this.props.parkingSpace.entrance.toLocaleString()}
-              />
-            </div>
-            <div className="line">
-              <label htmlFor="exit">Saída</label>
-              <input
-                typt="text"
-                id="exit"
-                placeholder="Exit"
-                readOnly
-                defaultValue={this.props.parkingSpace.exit.toLocaleString()}
-              />
-            </div>
-            <div className="line">
-              <label htmlFor="cost">Valor</label>
-              <input
-                typt="text"
-                id="cost"
-                placeholder="0.00"
-                defaultValue={this.props.parkingSpace.value}
-                readOnly
-              />
-            </div>
-            <div className="line">
-              <button onClick={() => this.props.onStartTime(this.props.id)}>
-                Iniciar
-              </button>
-              <button onClick={() => this.props.onFinishTime(this.props.id)}>
-                Finalizar
-              </button>
-              <button onClick={() => this.props.onResetTime(this.props.id)}>
-                Reiniciar
-              </button>
-              <button onClick={() => this.props.onDelete(this.props.id)}>
-                Deletar
-              </button>
-            </div>
+          <div className="bottoncontainer">
+            <button onClick={() => this.props.onStartTime(this.props.id)}>
+              Iniciar
+            </button>
+            <button onClick={() => this.props.onFinishTime(this.props.id)}>
+              Finalizar
+            </button>
+            <button onClick={() => this.props.onResetTime(this.props.id)}>
+              Reiniciar
+            </button>
+            <button
+              className="deletebutton"
+              onClick={() => this.props.onDelete(this.props.id)}
+            >
+              Deletar
+            </button>
           </div>
         </div>
       </React.Fragment>

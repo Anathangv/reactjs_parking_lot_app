@@ -1,20 +1,19 @@
 .App {
-  margin: 0px;
   padding: 0px;
-  background-color: chocolate;
   margin: 0px 10px;
 }
 
 .top h1 {
-  background-color: darkgray;
+  background-color: mediumblue;
   padding: 10px;
   font-weight: 800;
   font-size: xx-large;
   text-align: center;
+  color: white;
 }
 
 .display {
-  background-color: darkkhaki;
+  background-color: mediumblue;
   text-align: center;
   padding: 5px;
 }
@@ -28,7 +27,9 @@
   padding: 5px;
   display: flex;
   justify-content: center;
-  background-color: brown;
+  background-color: mediumblue;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .controls input {
@@ -49,7 +50,6 @@
 }
 
 .container {
-  background-color: khaki;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;

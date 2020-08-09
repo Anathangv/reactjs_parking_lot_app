@@ -1,59 +1,109 @@
-.containerSpace {
-  background-color: green;
-  display: flex;
-  flex-direction: row;
-  margin: 5px 5px;
-  padding: 5px 5px 5px 0px;
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.parkingspace {
+  background-color: rgb(142, 189, 92);
+  padding: 5px 5px 5px 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px 0px 5px 0px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .occupied {
-  background-color: yellow;
+  background-color: rgb(247, 245, 136);
 }
 
 .finalizing {
-  background-color: red;
+  background-color: rgb(184, 97, 97);
+}
+
+.topcontainer {
+  display: flex;
+  flex-direction: row;
 }
 
 .parkingPosition {
   background-color: none;
   display: inline-block;
-  padding: 3px;
+  padding-right: 2px;
 }
 
 .parkingPosition span {
   position: relative;
-  top: 35%;
+  top: 50%;
   color: black;
   background-color: white;
   padding: 5px 10px;
   border-radius: 25px;
   font-weight: 900;
   font-size: larger;
+  border: 2px solid black;
 }
 
-.parkingSpace {
+.inputbox {
+  background-color: rgb(232, 225, 225);
   max-width: 200px;
   min-width: 200px;
-  margin: 0px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 0px;
 }
 
 .line {
   margin: 0px;
-  background-color: gray;
-  display: flex;
+
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .line label {
+  display: grid;
+  grid-template-columns: 70px 130px;
+}
+
+.line label span {
   font-size: large;
-  min-width: 70px;
-  margin: 0px;
+  font-weight: 500;
+  padding-left: 3px;
 }
 
 .line input {
-  min-width: 130px;
+  min-width: 130;
   max-width: 130px;
+  border-style: none;
+  border-bottom: 1px solid rgb(232, 225, 225);
+}
+
+.inputreadonly {
+  background-color: rgb(250, 244, 244);
+}
+
+.bottoncontainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2px;
+}
+
+.bottoncontainer button {
+  border-radius: 15px;
+  padding: 3px;
+  border: 1px solid gray;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  text-decoration: none;
+  outline: none;
+}
+
+.bottoncontainer button:hover {
+  background-color: grey;
+  color: white;
+}
+
+.bottoncontainer .deletebutton:hover {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
 }
