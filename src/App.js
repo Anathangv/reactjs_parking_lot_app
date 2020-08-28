@@ -134,45 +134,81 @@ class App extends React.Component {
     }
   };
 
+  //update hour cost
+  updateHourCost = (newCost) => {
+    this.setState({ hourCost: newCost });
+  };
+
+  //update over time
+  updateOverTime = (newOverTimet) => {
+    console.log(newOverTimet);
+    this.setState({ overTime: newOverTimet });
+  };
+
+  //update over time cost
+  updateOverTimeCost = (newOverTimeCost) => {
+    console.log(newOverTimeCost);
+    this.setState({ hourCovertimeCostost: newOverTimeCost });
+  };
+
   render() {
     return (
       <div className="App">
         <div className="top">
-          <h1>Parking lot App</h1>
-          <div className="display">
-            <span>Total de vagas: {this.state.totalparkingSpace} </span>
-            <span>Disponível: {this.state.parkingSpaceAvalilable}</span>
-            <span>Ocupadas: {this.state.parkingSpaceAccupied}</span>
-          </div>
-          <div className="controls">
-            <div className="pricecontrol">
-              <label htmlFor="costhour:">Vl Hora:</label>
+          <div className="pricecontrol">
+            <label>
+              Valor Hora:
               <input
                 id="costhour"
                 type="text"
                 placeholder="0.00"
                 defaultValue={this.state.hourCost}
+                onChange={(e) => this.updateHourCost(e.target.value)}
               />
-              <label htmlFor="overtime:">Tempo Excedente:</label>
+            </label>
+            <label>
+              Tempo Excedente:
               <input
                 id="overtime"
                 type="text"
                 placeholder="0"
                 defaultValue={this.state.overTime}
+                onChange={(e) => this.updateOverTime(e.target.value)}
               />
-              <label htmlFor="costovertime:">Custo Excedente:</label>
+            </label>
+            <label>
+              Custo Excedente:
               <input
                 id="costovertime"
                 type="text"
                 placeholder="0.00"
                 defaultValue={this.state.overtimeCost}
+                onChange={(e) => this.updateOverTimeCost(e.target.value)}
               />
-            </div>
-            <div className="buttonscontrol">
-              <button onClick={() => this.createParkingSpace()}>Criar</button>
-              <button onClick={() => this.deleteAllParkingSpace()}>
-                Deletar todas
-              </button>
+            </label>
+          </div>
+
+          <div className="topcontent">
+            <h1>Parking lot App</h1>
+            <div className="display">
+              <span>
+                Total: <strong>{this.state.totalparkingSpace}</strong>{" "}
+              </span>
+              <span>
+                Disponível:<strong> {this.state.parkingSpaceAvalilable}</strong>
+              </span>
+              <span>
+                Ocupadas:<strong> {this.state.parkingSpaceAccupied}</strong>
+              </span>
+              <div className="buttonscontrol">
+                <button onClick={() => this.createParkingSpace()}>Criar</button>
+                <button
+                  className="deleteall"
+                  onClick={() => this.deleteAllParkingSpace()}
+                >
+                  Deletar Todas
+                </button>
+              </div>
             </div>
           </div>
         </div>

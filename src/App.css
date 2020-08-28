@@ -3,54 +3,111 @@
   margin: 0px 10px;
 }
 
-.top h1 {
-  background-color: mediumblue;
-  padding: 10px;
-  font-weight: 800;
-  font-size: xx-large;
+.top {
+  background-color: rgb(16, 27, 184);
   text-align: center;
-  color: white;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: skyblue;
+}
+
+.topcontent {
+  width: 50%;
+  display: inline-block;
+  min-width: fit-content;
+}
+
+.topcontent h1 {
+  padding-top: 5px;
+  font-weight: 800;
+  font-size: 250%;
+  text-align: center;
+  color: rgb(223, 175, 43);
 }
 
 .display {
-  background-color: mediumblue;
   text-align: center;
-  padding: 5px;
+  display: inline-flex;
+  vertical-align: middle;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .display span {
   font-size: x-large;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
-.controls {
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  background-color: mediumblue;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-}
-
-.controls input {
-  text-align: center;
-  width: 35px;
-  margin: 0px 5px;
-  font-size: medium;
-  font-weight: 600;
+.display span strong {
+  color: white;
 }
 
 .buttonscontrol {
-  margin: 0px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2px;
+  margin-left: 10px;
 }
 
 .buttonscontrol button {
   padding: 2px;
   margin: 0px 5px;
+  border-radius: 15px;
+  border: 1px solid gray;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.buttonscontrol button:hover {
+  background-color: mediumseagreen;
+  border: 1px solid mediumseagreen;
+  color: white;
+}
+
+.buttonscontrol .deleteall:hover {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.pricecontrol {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  padding: 5px;
+}
+
+.pricecontrol label {
+  text-align: left;
+}
+
+.pricecontrol input {
+  text-align: center;
+  width: 35px;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.pricecontrol label {
+  font-weight: 500;
+  font-size: large;
+  margin-bottom: 2px;
+}
+
+.pricecontrol input {
+  float: right;
+  margin: 0;
 }
