@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/reactjs_parking_lot_app/static/css/main.5c748360.chunk.css",
+    "main.js": "/reactjs_parking_lot_app/static/js/main.3c55651b.chunk.js",
+    "main.js.map": "/reactjs_parking_lot_app/static/js/main.3c55651b.chunk.js.map",
+    "runtime-main.js": "/reactjs_parking_lot_app/static/js/runtime-main.e94b4af5.js",
+    "runtime-main.js.map": "/reactjs_parking_lot_app/static/js/runtime-main.e94b4af5.js.map",
+    "static/js/2.e73f80a8.chunk.js": "/reactjs_parking_lot_app/static/js/2.e73f80a8.chunk.js",
+    "static/js/2.e73f80a8.chunk.js.map": "/reactjs_parking_lot_app/static/js/2.e73f80a8.chunk.js.map",
+    "index.html": "/reactjs_parking_lot_app/index.html",
+    "precache-manifest.d2de0cfc1b2d5ef7b4553dd96acb0b1d.js": "/reactjs_parking_lot_app/precache-manifest.d2de0cfc1b2d5ef7b4553dd96acb0b1d.js",
+    "service-worker.js": "/reactjs_parking_lot_app/service-worker.js",
+    "static/css/main.5c748360.chunk.css.map": "/reactjs_parking_lot_app/static/css/main.5c748360.chunk.css.map",
+    "static/js/2.e73f80a8.chunk.js.LICENSE.txt": "/reactjs_parking_lot_app/static/js/2.e73f80a8.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e94b4af5.js",
+    "static/js/2.e73f80a8.chunk.js",
+    "static/css/main.5c748360.chunk.css",
+    "static/js/main.3c55651b.chunk.js"
+  ]
+}
