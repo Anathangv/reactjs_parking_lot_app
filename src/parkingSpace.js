@@ -49,6 +49,17 @@ class ParkingSpace extends Component {
               </div>
               <div className="line">
                 <label>
+                  <span>Tempo</span>
+                  <input
+                    className="inputreadonly"
+                    typt="text"
+                    readOnly
+                    defaultValue={this.props.parkingSpace.timeSpent}
+                  />
+                </label>
+              </div>
+              <div className="line">
+                <label>
                   <span>Valor</span>
                   <input
                     className="inputreadonly"

@@ -77,7 +77,7 @@ class App extends React.Component {
       newParkingSpaceList[position].exit = dateFinish;
       newParkingSpaceList[position].value =
         this.state.hourCost * (hours > 0 ? hours : 1) +
-        this.state.overtimeCost * minutes;
+        (hours >= 1 ? this.state.overtimeCost * minutes : 0);
       newParkingSpaceList[position].timeSpent =
         hours + "h:" + minutes + "m:" + seconds + "s";
 
@@ -189,7 +189,7 @@ class App extends React.Component {
           </div>
 
           <div className="topcontent">
-            <h1>Parking lot App</h1>
+            <h1>Parking Lot App</h1>
             <div className="display">
               <span>
                 Total: <strong>{this.state.totalparkingSpace}</strong>{" "}
