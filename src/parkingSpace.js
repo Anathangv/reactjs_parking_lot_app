@@ -32,7 +32,7 @@ class ParkingSpace extends Component {
                     className="inputreadonly"
                     typt="text"
                     readOnly
-                    defaultValue={this.props.parkingSpace.entrance.toLocaleString()}
+                    value={this.props.parkingSpace.entrance.toLocaleString()}
                   />
                 </label>
               </div>
@@ -43,7 +43,7 @@ class ParkingSpace extends Component {
                     className="inputreadonly"
                     typt="text"
                     readOnly
-                    defaultValue={this.props.parkingSpace.exit.toLocaleString()}
+                    value={this.props.parkingSpace.exit.toLocaleString()}
                   />
                 </label>
               </div>
@@ -54,7 +54,7 @@ class ParkingSpace extends Component {
                     className="inputreadonly"
                     typt="text"
                     readOnly
-                    defaultValue={this.props.parkingSpace.timeSpent}
+                    value={this.props.parkingSpace.timeSpent}
                   />
                 </label>
               </div>
@@ -64,7 +64,9 @@ class ParkingSpace extends Component {
                   <input
                     className="inputreadonly"
                     typt="text"
-                    defaultValue={this.props.parkingSpace.value}
+                    value={`R$ ${Number(this.props.parkingSpace.value).toFixed(
+                      2
+                    )}`}
                     readOnly
                   />
                 </label>

@@ -54,7 +54,10 @@ class App extends React.Component {
       if (!newParkingSpaceList[position].entrance) {
         this.updateCounters(null, -1, 1);
       }
+
       newParkingSpaceList[position].entrance = new Date();
+      //newParkingSpaceList[position].entrance.setHours(16); //teste
+      //newParkingSpaceList[position].entrance.setMinutes(30); //teste
       this.setState({
         parkingSpaceList: newParkingSpaceList,
       });
@@ -70,14 +73,31 @@ class App extends React.Component {
       const dateFinish = new Date();
 
       const milliseconds = Math.abs(dateFinish - dateStart);
-      const hours = Math.floor(milliseconds / 3600000);
-      const minutes = Math.floor(milliseconds / 60000);
-      const seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+      let hours = Math.floor(milliseconds / 3600000);
+      let minutes = Math.floor((milliseconds / 60000) % 60);
+      let seconds = (((milliseconds % 60000) / 1000) % 60).toFixed(0);
+
+      //adjust minutes and seconds to not display 60
+      if (seconds == 60) {
+        minutes = minutes + 1;
+        seconds = 0;
+      }
+      if (minutes == 60) {
+        hours = hours + 1;
+        minutes = 0;
+      }
+
+      //calculate hour cost
+      let value = this.state.hourCost * (hours > 0 ? hours : 1);
+
+      //increment overtime cost
+      value +=
+        hours >= 1
+          ? this.state.overtimeCost * Math.trunc(minutes / this.state.overTime)
+          : 0;
 
       newParkingSpaceList[position].exit = dateFinish;
-      newParkingSpaceList[position].value =
-        this.state.hourCost * (hours > 0 ? hours : 1) +
-        (hours >= 1 ? this.state.overtimeCost * minutes : 0);
+      newParkingSpaceList[position].value = value;
       newParkingSpaceList[position].timeSpent =
         hours + "h:" + minutes + "m:" + seconds + "s";
 
