@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/reactjs_parking_lot_app/precache-manifest.d2de0cfc1b2d5ef7b4553dd96acb0b1d.js"
+  "/reactjs_parking_lot_app/precache-manifest.35523151a4170309814ac3da89644c35.js"
 );
 
 self.addEventListener('message', (event) => {
