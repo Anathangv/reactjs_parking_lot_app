@@ -22,7 +22,13 @@ class ParkingSpace extends Component {
               <div className="line">
                 <label>
                   <span>Placa</span>
-                  <input type="text" placeholder="AAAA-9999" />
+                  <input
+                    type="text"
+                    placeholder="AAAA-9999"
+                    onChange={(e) =>
+                      this.props.onUpdatePlate(this.props.id, e.target.value)
+                    }
+                  />
                 </label>
               </div>
               <div className="line">

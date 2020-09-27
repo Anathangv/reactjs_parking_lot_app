@@ -1,7 +1,10 @@
 import React from "react";
 import "./App.css";
-import ParkingSpace from "./parkingSpace";
+import ParkingSpace from "./components/parkingSpace";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+toast.configure();
 class App extends React.Component {
   state = {
     totalparkingSpace: 0,
@@ -9,7 +12,7 @@ class App extends React.Component {
     parkingSpaceAccupied: 0,
 
     parkingSpace: {
-      plate: "",
+      plate: null,
       entrance: "",
       exit: "",
       value: "",
@@ -20,6 +23,10 @@ class App extends React.Component {
     hourCost: 7,
     overTime: 15,
     overtimeCost: 0.5,
+  };
+
+  notify = (text) => {
+    toast.warn(text, { position: toast.POSITION.TOP_RIGHT });
   };
 
   //create a new parking space
@@ -50,17 +57,24 @@ class App extends React.Component {
   startTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
 
-    if (!newParkingSpaceList[position].exit) {
-      if (!newParkingSpaceList[position].entrance) {
-        this.updateCounters(null, -1, 1);
-      }
+    //check is car palte was informed
+    if (!newParkingSpaceList[position].plate) {
+      this.notify("Necessário informar a placa do veículo");
+    } else {
+      console.log(newParkingSpaceList[position].plate);
+      console.log("2");
+      if (!newParkingSpaceList[position].exit) {
+        if (!newParkingSpaceList[position].entrance) {
+          this.updateCounters(null, -1, 1);
+        }
 
-      newParkingSpaceList[position].entrance = new Date();
-      //newParkingSpaceList[position].entrance.setHours(16); //teste
-      //newParkingSpaceList[position].entrance.setMinutes(30); //teste
-      this.setState({
-        parkingSpaceList: newParkingSpaceList,
-      });
+        newParkingSpaceList[position].entrance = new Date();
+        newParkingSpaceList[position].entrance.setHours(12); //teste
+        newParkingSpaceList[position].entrance.setMinutes(30); //teste
+        this.setState({
+          parkingSpaceList: newParkingSpaceList,
+        });
+      }
     }
   };
 
@@ -68,40 +82,46 @@ class App extends React.Component {
   finishTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
 
-    if (newParkingSpaceList[position].entrance) {
-      const dateStart = new Date(newParkingSpaceList[position].entrance);
-      const dateFinish = new Date();
+    //check is car palte was informed
+    if (!newParkingSpaceList[position].plate) {
+      this.notify("Necessário informar a placa do veículo");
+    } else {
+      if (newParkingSpaceList[position].entrance) {
+        const dateStart = new Date(newParkingSpaceList[position].entrance);
+        const dateFinish = new Date();
 
-      const milliseconds = Math.abs(dateFinish - dateStart);
-      let hours = Math.floor(milliseconds / 3600000);
-      let minutes = Math.floor((milliseconds / 60000) % 60);
-      let seconds = (((milliseconds % 60000) / 1000) % 60).toFixed(0);
+        const milliseconds = Math.abs(dateFinish - dateStart);
+        let hours = Math.floor(milliseconds / 3600000);
+        let minutes = Math.floor((milliseconds / 60000) % 60);
+        let seconds = (((milliseconds % 60000) / 1000) % 60).toFixed(0);
 
-      //adjust minutes and seconds to not display 60
-      if (seconds == 60) {
-        minutes = minutes + 1;
-        seconds = 0;
+        //adjust minutes and seconds to not display 60
+        if (seconds === 60) {
+          minutes = minutes + 1;
+          seconds = 0;
+        }
+        if (minutes === 60) {
+          hours = hours + 1;
+          minutes = 0;
+        }
+
+        //calculate hour cost
+        let value = this.state.hourCost * (hours > 0 ? hours : 1);
+
+        //increment overtime cost
+        value +=
+          hours >= 1
+            ? this.state.overtimeCost *
+              Math.trunc(minutes / this.state.overTime)
+            : 0;
+
+        newParkingSpaceList[position].exit = dateFinish;
+        newParkingSpaceList[position].value = value;
+        newParkingSpaceList[position].timeSpent =
+          hours + "h:" + minutes + "m:" + seconds + "s";
+
+        this.setState({ parkingSpaceList: newParkingSpaceList });
       }
-      if (minutes == 60) {
-        hours = hours + 1;
-        minutes = 0;
-      }
-
-      //calculate hour cost
-      let value = this.state.hourCost * (hours > 0 ? hours : 1);
-
-      //increment overtime cost
-      value +=
-        hours >= 1
-          ? this.state.overtimeCost * Math.trunc(minutes / this.state.overTime)
-          : 0;
-
-      newParkingSpaceList[position].exit = dateFinish;
-      newParkingSpaceList[position].value = value;
-      newParkingSpaceList[position].timeSpent =
-        hours + "h:" + minutes + "m:" + seconds + "s";
-
-      this.setState({ parkingSpaceList: newParkingSpaceList });
     }
   };
 
@@ -154,6 +174,13 @@ class App extends React.Component {
     }
   };
 
+  //update car plate
+  updateCarPlate = (position, newPlate) => {
+    const newParkingSpaceList = [...this.state.parkingSpaceList];
+    newParkingSpaceList[position].plate = newPlate;
+    this.setState({ parkingSpaceList: newParkingSpaceList });
+  };
+
   //update hour cost
   updateHourCost = (newCost) => {
     this.setState({ hourCost: newCost });
@@ -161,13 +188,11 @@ class App extends React.Component {
 
   //update over time
   updateOverTime = (newOverTimet) => {
-    console.log(newOverTimet);
     this.setState({ overTime: newOverTimet });
   };
 
   //update over time cost
   updateOverTimeCost = (newOverTimeCost) => {
-    console.log(newOverTimeCost);
     this.setState({ hourCovertimeCostost: newOverTimeCost });
   };
 
@@ -242,6 +267,7 @@ class App extends React.Component {
               onFinishTime={this.finishTime}
               onResetTime={this.resetTime}
               onDelete={this.deleteParkingSpace}
+              onUpdatePlate={this.updateCarPlate}
               parkingSpace={item}
             />
           ))}
