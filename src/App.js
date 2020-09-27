@@ -61,16 +61,14 @@ class App extends React.Component {
     if (!newParkingSpaceList[position].plate) {
       this.notify("Necessário informar a placa do veículo");
     } else {
-      console.log(newParkingSpaceList[position].plate);
-      console.log("2");
       if (!newParkingSpaceList[position].exit) {
         if (!newParkingSpaceList[position].entrance) {
           this.updateCounters(null, -1, 1);
         }
 
         newParkingSpaceList[position].entrance = new Date();
-        newParkingSpaceList[position].entrance.setHours(12); //teste
-        newParkingSpaceList[position].entrance.setMinutes(30); //teste
+        //newParkingSpaceList[position].entrance.setHours(12); //teste
+        //newParkingSpaceList[position].entrance.setMinutes(30); //teste
         this.setState({
           parkingSpaceList: newParkingSpaceList,
         });
@@ -82,11 +80,11 @@ class App extends React.Component {
   finishTime = (position) => {
     const newParkingSpaceList = [...this.state.parkingSpaceList];
 
-    //check is car palte was informed
-    if (!newParkingSpaceList[position].plate) {
-      this.notify("Necessário informar a placa do veículo");
-    } else {
-      if (newParkingSpaceList[position].entrance) {
+    if (newParkingSpaceList[position].entrance) {
+      //check is car palte was informed
+      if (!newParkingSpaceList[position].plate) {
+        this.notify("Necessário informar a placa do veículo");
+      } else {
         const dateStart = new Date(newParkingSpaceList[position].entrance);
         const dateFinish = new Date();
 
